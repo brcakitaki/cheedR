@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581073978102.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5C1A6B41",
+    "lastKnownWriteTime" : 1581074051,
+    "last_content_update" : 1581074051829,
+    "path" : "~/RStudio/cheedR/R/Parent_attain_function.R",
+    "project_path" : "R/Parent_attain_function.R",
+    "properties" : {
+        "cursorPosition" : "27,2",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
