@@ -1,4 +1,8 @@
-# These functions perform common cleaning jobs
+#' These functions perform common CHEEDR cleaning jobs when working
+#' with La Trobe University enrolment data
+#'
+#' @importFrom dplyr mutate if_else "%>%"
+#'
 
 
 # Clean up indigenous variable into a dichotomous variable
