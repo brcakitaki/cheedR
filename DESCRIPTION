@@ -1,18 +1,18 @@
 Package: cheedR
 Type: Package
 Title: A toolbox for CHEEDR data analysis
-Version: 0.1.0
+Version: 0.1.1
 Author: Beni Cakitaki
 Maintainer: Beni Cakitaki <b.cakitaki@latrobe.edu.au>
 Description: A toolbox to read in, manipulate, and join, commonly used at La Trobe University data tables extracted from the business objects database.
 License: MIT + file License
-Suggests: 
+Depends: 
   dplyr, 
   tidyr,
+  readr,
   lubridate,
   janitor,
   glue
 Encoding: UTF-8
-LazyData: no
-
-
+LazyData: true
+RoxygenNote: 7.0.2

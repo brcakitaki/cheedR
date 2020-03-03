@@ -1,12 +1,17 @@
-# Parent_attain()
-
-# This function reads in a .csv of La Trobe enrolment parent attainment data,
-# and converts it into a standardised format
-
-# NOTE: You will need to at least include the following variables in the LTU BO extract:
-
-        # - `Student ID`
-        # - `Parent Highest Educ Attainment Code`
+#' Tranform parental highest attainment data from the
+#' La Trobe University student enrolment database into tidy data
+#' This function reads in a .csv of La Trobe enrolment parent attainment data,
+#' and converts it into a standardised format
+#' NOTE: You will need to at least include the following variables in the LTU BO extract:
+#' # - 'Student ID'
+#' # - 'Parent Highest Educ Attainment Code'
+#'
+#' @importFrom dplyr mutate mutate_all distinct "%>%" case_when group_by ungroup
+#'
+#' @importFrom readr read_csv
+#'
+#' @importFrom janitor clean_names
+#'
 
 
 # Create a function that converts parent highest ed into standard highest ed measure

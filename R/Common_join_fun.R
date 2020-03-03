@@ -1,4 +1,10 @@
-# These functions join in common external data (ASGS,SEIFA,country,language,basis of admission)
+#' These functions join in common external data
+#' (ASGS,SEIFA,country,language,basis of admission)
+#'
+#' @importFrom dplyr "%>%"  left_join mutate if_else rename
+#'
+
+
 
 # Join in postcodes
 Postcode_vars <- function(data) {
