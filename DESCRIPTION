@@ -9,6 +9,9 @@ License: What license is it under?
 Imports: 
   tidyverse, 
   lubridate,
+  janitor,
   glue
 Encoding: UTF-8
 LazyData: true
+
+
