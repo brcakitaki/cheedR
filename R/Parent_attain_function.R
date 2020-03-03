@@ -14,6 +14,7 @@
 #'
 
 
+#' @export
 # Create a function that converts parent highest ed into standard highest ed measure
 Parent_attain <- function(path) {
 

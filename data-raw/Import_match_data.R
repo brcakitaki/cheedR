@@ -1,8 +1,5 @@
 # Load internal data into sysdata.rda
 
-# Load packages
-require(tidyverse)
-require(readxl)
 
 # Basis of Admission match file
 boa.match <- read_csv("G:/Predictive Analytics/External match files/Match files/BOAmatchCodes.csv") %>%
@@ -10,8 +7,6 @@ boa.match <- read_csv("G:/Predictive Analytics/External match files/Match files/
   rename(basis_for_admission_code = boa_code,
          basis_admission = translation_code_description) %>%
   distinct(basis_for_admission_code,basis_admission)
-
-save(boa.match, file = "R/sysdata.rda/boa_match.rda")
 
 # Postcode match file - need 2011 & 2016
 Postcode.match <- list(
@@ -42,7 +37,6 @@ Postcode.match <- list(
   distinct() %>%
   janitor::clean_names()
 
-save(Postcode.match, file = "R/sysdata.rda/Postcode_match.rda")
 
 #SEIFA match file for 2016 (matches full SEIFA suite of indices to postcode for 2016)
 
@@ -57,7 +51,6 @@ ACARA.match <- read_csv("G:/Predictive Analytics/External match files/Match file
          school_geolocation = geolocation,
          school_icsea = icsea)
 
-save(ACARA.match, file = "R/sysdata.rda/ACARA_match.rda")
 
 # Country codes match file
 Country.match <- read_csv("G:/Predictive Analytics/External match files/Match files/Country_codes_SACC_2016.csv") %>%
@@ -65,7 +58,6 @@ Country.match <- read_csv("G:/Predictive Analytics/External match files/Match fi
   distinct(bo_country,broad_region,narrow_region) %>%
   mutate_all(str_to_upper)
 
-save(Country.match, file = "R/sysdata.rda/Country_match.rda")
 
 # Language match file
 Language.match <- read_csv("G:/Predictive Analytics/External match files/Match files/Main_Language_Lookup.csv") %>%
@@ -81,9 +73,6 @@ Language.match <- read_csv("G:/Predictive Analytics/External match files/Match f
          broad_language = lang_broad_desc)
 
 
-save(Language.match, file = "R/sysdata.rda/Language_match.rda")
-
-
 
 # Load in toy data
 LTU.df <- read_csv("C:/Users/brcakitaki/Documents/LTU Enrolment data/Enrolment 18-20/LTU_2018_80000.csv") %>%
@@ -95,7 +84,3 @@ LTU.df <- read_csv("C:/Users/brcakitaki/Documents/LTU Enrolment data/Enrolment 1
 usethis::use_data(Postcode.match,Language.match,Country.match,boa.match,ACARA.match ,internal = T)
 
 
-LTU.df %>%
-  cheedR::Indigenous_var() %>%
-  cheedR::Language_vars() %>%
-  glimpse()

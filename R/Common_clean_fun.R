@@ -4,7 +4,7 @@
 #' @importFrom dplyr mutate if_else "%>%"
 #'
 
-
+#' @export
 # Clean up indigenous variable into a dichotomous variable
 Indigenous_var <- function(data) {
   if ("aboriginal_or_torres_strait_islander_code" %in% colnames(data) == F) {
@@ -17,6 +17,7 @@ Indigenous_var <- function(data) {
                                 "Y","N"))
 }
 
+#' @export
 # Trim off rogue ATAR values - no lower than 10 and no higher than 100
 ATAR_trim <- function(data) {
   if ("latest_atar" %in% colnames(data) == F) {

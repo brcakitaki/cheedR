@@ -5,7 +5,7 @@
 #'
 
 
-
+#' @export
 # Join in postcodes
 Postcode_vars <- function(data) {
   if ("postcode" %in% colnames(data) == F) {
@@ -18,6 +18,7 @@ Postcode_vars <- function(data) {
   }
 }
 
+#' @export
 # Join in basis of admission
 BOA_var <- function(data) {
   if ("basis_for_admission_code" %in% colnames(data) == F) {
@@ -30,6 +31,7 @@ BOA_var <- function(data) {
   }
 }
 
+#' @export
 # Join in ACARA variables
 ACARA_vars <- function(data) {
   if ("latest_secondary_school_code" %in% colnames(data) == F) {
@@ -42,6 +44,7 @@ ACARA_vars <- function(data) {
   }
 }
 
+#' @export
 # Join in language variables
 Language_vars <- function(data,NESB = T) {
   if ("main_language_spoken_code" %in% colnames(data) == F) {
@@ -62,7 +65,7 @@ Language_vars <- function(data,NESB = T) {
   }
 }
 
-
+#' @export
 # Join in country variables
 Country_vars <- function(data, birth_country = T, home_country = T) {
 
