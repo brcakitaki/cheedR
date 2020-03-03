@@ -2,7 +2,6 @@
 #' with La Trobe University enrolment data
 #'
 #' @importFrom dplyr mutate if_else "%>%"
-#'
 
 #' @export
 # Clean up indigenous variable into a dichotomous variable

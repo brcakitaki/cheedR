@@ -14,5 +14,5 @@ Depends:
   janitor,
   glue
 Encoding: UTF-8
-LazyData: true
+LazyData: no
 RoxygenNote: 7.0.2
