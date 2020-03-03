@@ -4,7 +4,7 @@ Title: A toolbox for CHEEDR data analysis
 Version: 0.1.1
 Author: Beni Cakitaki
 Maintainer: Beni Cakitaki <b.cakitaki@latrobe.edu.au>
-Description: A toolbox to read in, manipulate, and join, commonly used at La Trobe University data tables extracted from the business objects database.
+Description: A toolbox to read in, clean, and join, commonly used student enrolment data at CHEEDR.
 License: MIT + file License
 Depends: 
   dplyr, 
@@ -12,6 +12,7 @@ Depends:
   readr,
   lubridate,
   janitor,
+  skimr,
   glue
 Encoding: UTF-8
 LazyData: no
