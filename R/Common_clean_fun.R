@@ -29,6 +29,6 @@ ATAR_trim <- function(data) {
 }
 
 
-# Rename variables to accord with the cheedr package
 
+# Course commencement year
 

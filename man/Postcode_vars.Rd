@@ -2,12 +2,10 @@
 % Please edit documentation in R/Common_join_fun.R
 \name{Postcode_vars}
 \alias{Postcode_vars}
-\title{These functions join in common external data
-(ASGS,SEIFA,country,language,basis of admission)}
+\title{\code{Postcode_vars} returns new columns to the df joined by 'postcode', including ASGS and SEIFA variables for 2011 and 2016.}
 \usage{
 Postcode_vars(data)
 }
 \description{
-These functions join in common external data
-(ASGS,SEIFA,country,language,basis of admission)
+\code{Postcode_vars} returns new columns to the df joined by 'postcode', including ASGS and SEIFA variables for 2011 and 2016.
 }

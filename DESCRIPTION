@@ -15,5 +15,5 @@ Depends:
   skimr,
   glue
 Encoding: UTF-8
-LazyData: no
+LazyData: true
 RoxygenNote: 7.0.2

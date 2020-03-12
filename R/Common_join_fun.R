@@ -1,12 +1,11 @@
-#' These functions join in common external data
-#' (ASGS,SEIFA,country,language,basis of admission)
+#'
+#'
+#'
+#' \code{Postcode_vars} returns new columns to the df joined by 'postcode', including ASGS and SEIFA variables for 2011 and 2016.
 #'
 #' @importFrom dplyr "%>%"  left_join mutate if_else rename
 #'
-
-
 #' @export
-# Join in postcodes
 Postcode_vars <- function(data) {
   if ("postcode" %in% colnames(data) == F) {
     stop("Does your data have the variable 'postcode'?\n
@@ -18,8 +17,11 @@ Postcode_vars <- function(data) {
   }
 }
 
+
+#' Join in HEIMS basis of admission variable
+#'
+#'\code{BOA_var} returns a column of simplified basis of admission categories, consistent with the HEIMS definition, and joined by 'basis_for_admission_code'.
 #' @export
-# Join in basis of admission
 BOA_var <- function(data) {
   if ("basis_for_admission_code" %in% colnames(data) == F) {
     stop("Does your data have the variable 'basis_for_admission_code'?\n
@@ -31,14 +33,18 @@ BOA_var <- function(data) {
   }
 }
 
+
+#' Join in ACARA variables
+#'
+#' \code{ACARA_vars} returns school sector, ICSEA, and gelocation, columns from the ACARA series dataset, matched by 'latest_secondary_school_code'.
+#' Warning: 'ACARA_vars' should only be used in cases where the student was in secondary school between 2015 & 2017. A more accurate match file needs to be developed that specifies year.
 #' @export
-# Join in ACARA variables
 ACARA_vars <- function(data) {
   if ("latest_secondary_school_code" %in% colnames(data) == F) {
     stop("Does your data have the variable 'latest_secondary_school_code'?\n
          Spoiler alert: it doesn't.
          Consider getting it.")
-  } else{
+  } else {
     data %>%
       left_join(ACARA.match)
   }
