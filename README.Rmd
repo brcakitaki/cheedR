@@ -22,11 +22,11 @@ A package for turning messy La Trobe University student enrolment extracts into 
 
 ## Introduction
 
-Users, as you know, one of the most painful parts of working with data at CHEEDR is extracting student data through the La Trobe University Business Intelligence interface. 
+One of the most painful parts of working with data at CHEEDR is extracting student data through the La Trobe University Business Intelligence (BI) interface. 
 
 Bad news - this package cannot alleviate that pain. 
 
-Good news - all the painful stuff after extracting data is much less horrid thanks to this package. 
+Good news - all the painful stuff after extracting data is much less horrid thanks to this package. Reading in extracted BI output, cleaning it, and joining external variables, such as secondary school data, and the Australian Bureau of Statistics (ABS) geodemographic variables, and producing a tidy finshed table are available within this package.   
 
 
 ## Installation

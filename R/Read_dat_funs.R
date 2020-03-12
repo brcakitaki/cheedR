@@ -4,7 +4,6 @@
 #'
 #'
 #' @export
-
 new_csv_dir <- function(dir_path = "~/", postcode = T, parent = T, date_stamp = Sys.Date()) {
 
   dir.create(glue::glue("{dir_path}/Data_extracts_{as.character(date_stamp)}"))
@@ -25,7 +24,8 @@ new_csv_dir <- function(dir_path = "~/", postcode = T, parent = T, date_stamp = 
 
 
 
-# Enrolment data
+#' Enrolment data
+#' @export
 enrolment_read <- function(path) {
   x <- purrr::map(
     list.files(
@@ -51,7 +51,8 @@ enrolment_read <- function(path) {
 }
 
 
-# Parents educational attainment data
+#' Parents educational attainment data
+#' @export
 parent_read <- function(path, pattern = ".csv") {
 
   x <- purrr::map_dfr(
@@ -93,7 +94,8 @@ parent_read <- function(path, pattern = ".csv") {
 
 
 
-# postcode data
+#' postcode data
+#' @export
 postcode_read <- function(path, pattern = ".csv") {
   x <- purrr::map_dfr(
     list.files(
@@ -141,7 +143,8 @@ postcode_read <- function(path, pattern = ".csv") {
   }
 
 
-# join dfs
+#' join dfs
+#' @export
 combine_basic <- function(enrolment_df, postcode_df = NULL, parent_df = NULL) {
   if (is.null(enrolment_df)) {
     stop("At the very least, you need to include an enrolment df.")
@@ -172,9 +175,6 @@ combine_basic <- function(enrolment_df, postcode_df = NULL, parent_df = NULL) {
       left_join(postcode_df)
   }
   }
-
-
-
 
 
 
