@@ -26,27 +26,28 @@ new_csv_dir <- function(dir_path = "~/", postcode = T, parent = T, date_stamp = 
 
 #' Enrolment data
 #' @export
-enrolment_read <- function(path) {
+enrolment_read <- function(path, pattern = ".csv") {
   x <- purrr::map(
     list.files(
       path = path,
+      pattern = pattern,
       full.names = T
     ), ~ .x %>%
       readr::read_csv(guess_max = 300000) %>%
       janitor::clean_names()
   )
 
-  if (purrr::map(tester.list, ~ purrr::has_element(colnames(.x), "main_language_spoken_code")) %>% purrr::every(isTRUE) == T) {
+  if (purrr::map(x, ~ purrr::has_element(colnames(.x), "main_language_spoken_code")) %>% purrr::every(isTRUE) == T) {
 
     x %>%
-      map_dfr( ~ .x %>%
-                 mutate(main_language_spoken_code = as.numeric(main_language_spoken_code))) %>%
-      distinct()
+      purrr::map_dfr( ~ .x %>%
+                 dplyr::mutate(main_language_spoken_code = as.numeric(main_language_spoken_code))) %>%
+      dplyr::distinct()
 
   } else {
     x %>%
-      bind_rows() %>%
-      distinct()
+      dplyr::bind_rows() %>%
+      dplyr::distinct()
   }
 }
 
@@ -123,7 +124,8 @@ postcode_read <- function(path, pattern = ".csv") {
       dplyr::distinct(student_id,
                first_postcode,
                postcode,
-               postcode_year)
+               postcode_year) %>%
+      dplyr::filter(!is.na(postcode))
   } else {
 
     warning("You appear to be missing the variable 'commencing_postcode'.\n
@@ -138,7 +140,8 @@ postcode_read <- function(path, pattern = ".csv") {
       dplyr::distinct(student_id,
                first_postcode,
                postcode,
-               postcode_year)
+               postcode_year) %>%
+      dplyr::filter(!is.na(postcode))
     }
   }
 
@@ -172,7 +175,7 @@ combine_basic <- function(enrolment_df, postcode_df = NULL, parent_df = NULL) {
   else {
     enrolment_df %>%
       left_join(parent_df) %>%
-      left_join(postcode_df)
+      left_join(postcode_df, by = c("student_id","enrolment_year" = "postcode_year"))
   }
   }
 

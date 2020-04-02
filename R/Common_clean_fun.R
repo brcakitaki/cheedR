@@ -12,7 +12,7 @@ Indigenous_var <- function(data) {
          Consider getting it.")
   }
   data %>%
-    mutate(Indigenous = if_else(str_detect(aboriginal_or_torres_strait_islander_code,"B|Y|T"),
+    dplyr::mutate(Indigenous = dplyr::if_else(stringr::str_detect(aboriginal_or_torres_strait_islander_code,"B|Y|T"),
                                 "Y","N"))
 }
 
@@ -25,7 +25,8 @@ ATAR_trim <- function(data) {
          Consider getting it.")
   }
   data %>%
-    mutate(atar = if_else(latest_atar > 10 & latest_atar < 100, latest_atar,NaN))
+    dplyr::mutate(latest_atar = as.numeric(latest_atar)) %>%
+    dplyr::mutate(atar = dplyr::if_else(latest_atar > 10 & latest_atar < 100, latest_atar,NaN))
 }
 
 

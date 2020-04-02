@@ -4,7 +4,7 @@
 \alias{enrolment_read}
 \title{Enrolment data}
 \usage{
-enrolment_read(path)
+enrolment_read(path, pattern = ".csv")
 }
 \description{
 Enrolment data

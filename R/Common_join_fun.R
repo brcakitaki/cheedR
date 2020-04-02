@@ -6,14 +6,21 @@
 #' @importFrom dplyr "%>%"  left_join mutate if_else rename
 #'
 #' @export
-Postcode_vars <- function(data) {
-  if ("postcode" %in% colnames(data) == F) {
-    stop("Does your data have the variable 'postcode'?\n
-         Spoiler alert: it doesn't.
-         Consider getting it.")
-  } else{
+postcode_vars <- function(data, first_postcode = F) {    # need an argument for whether to use the first, or enrolment year, postcode.
+  if ("postcode" %in% colnames(data) == F & first_postcode == F) {
+    stop("Your data is missing the variable 'postcode'.
+         Did you mean 'first_postcode'?
+         If so, change the function argument to 'first_postcode = T'.")
+  }
+  if ("first_postcode" %in% colnames(data) == T & first_postcode == T) {
+
     data %>%
-      left_join(Postcode.match)
+      dplyr::left_join(Postcode.match, by = c("first_postcode" = "postcode"))
+
+  }
+  else{
+    data %>%
+      dplyr::left_join(Postcode.match, by = "postcode")
   }
 }
 
@@ -29,7 +36,7 @@ BOA_var <- function(data) {
          Consider getting it.")
   } else{
     data %>%
-      left_join(boa.match)
+      dplyr::left_join(boa.match)
   }
 }
 
@@ -46,7 +53,7 @@ ACARA_vars <- function(data) {
          Consider getting it.")
   } else {
     data %>%
-      left_join(ACARA.match)
+      dplyr::left_join(ACARA.match)
   }
 }
 
@@ -63,11 +70,11 @@ Language_vars <- function(data,NESB = T) {
          Either set 'NESB = F', or come back later when you have the right variables.")
   } else if (NESB == T) {
     data %>%
-      left_join(Language.match) %>%
-      mutate(NESB = if_else(enrolment_year - year_of_entry_to_australia < 10, "Y", "N"))
+      dplyr::left_join(Language.match) %>%
+      dplyr::mutate(NESB = dplyr::if_else(enrolment_year - year_of_entry_to_australia < 10, "Y", "N"))
   } else if (NESB == F) {
     data %>%
-      left_join(Language.match)
+      dplyr::left_join(Language.match)
   }
 }
 
@@ -81,21 +88,21 @@ Country_vars <- function(data, birth_country = T, home_country = T) {
          Come back with both or change country parameter selection to only include the present variables, and then we're back baby!")
   } else if (birth_country == T & home_country == T & "country_of_birth" %in% colnames(data) == T & "country_of_home_residency" %in% colnames(data) == T)  {
     data %>%
-      left_join((Country.match %>%
-                  rename(birth_broad_region = broad_region,
+      dplyr::left_join((Country.match %>%
+                  dplyr::rename(birth_broad_region = broad_region,
                          birth_narrow_region = narrow_region)), by = c("country_of_birth" = "bo_country")) %>%
-      left_join((Country.match %>%
-                   rename(home_broad_region = broad_region,
+      dplyr::left_join((Country.match %>%
+                   dplyr::rename(home_broad_region = broad_region,
                           home_narrow_region = narrow_region)), by = c("country_of_home_residency" = "bo_country"))
   } else if (birth_country == T & "country_of_birth" %in% colnames(data) == T) {
     data %>%
-      left_join((Country.match %>%
-                   rename(birth_broad_region = broad_region,
+      dplyr::left_join((Country.match %>%
+                   dplyr::rename(birth_broad_region = broad_region,
                           birth_narrow_region = narrow_region)), by = c("country_of_birth" = "bo_country"))
   } else if (home_country == T & "country_of_home_residency" %in% colnames(data) == T) {
     data %>%
-      left_join((Country.match %>%
-                   rename(home_broad_region = broad_region,
+      dplyr::left_join((Country.match %>%
+                   dplyr::rename(home_broad_region = broad_region,
                           home_narrow_region = narrow_region)), by = c("country_of_home_residency" = "bo_country"))
   } else {
     warning("You have excluded all parameters relevant to the function: 'Country_vars' or you don't have the right variables.")
@@ -103,4 +110,10 @@ Country_vars <- function(data, birth_country = T, home_country = T) {
 }
 
 
+#' Join all ext vars
+#'
+#' @export
+all_external_joins <- function(data,postcodes) {
+
+}
 

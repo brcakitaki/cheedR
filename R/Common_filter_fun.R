@@ -2,17 +2,20 @@
 #' @export
 no_zero_units <- function(data) {
 
-  if ("subject_credit_points" %in% colnames(data) == F) {
-    warning("Your data is missing the variable 'subject_credit_points'.\n
+  if ("subject_credit_value" %in% colnames(data) == F) {
+    warning("Your data is missing the variable 'subject_credit_value'.\n
             Zero credit point subjects will not be filtered out.")
+
+    data
+
   }
   data %>%
-    dplyr::filter(subject_credit_points > 0)
+    dplyr::filter(subject_credit_value > 0)
 
 }
 
 
-
+#'
 #' @export
 no_offshore <- function(data) {
 
@@ -21,6 +24,7 @@ no_offshore <- function(data) {
             Offshore study will not filtered out of your data.")
 
     data
+
   }
   else {
   data %>%
@@ -29,7 +33,7 @@ no_offshore <- function(data) {
 }
 
 
-
+#'
 #' @export
 no_third_party <- function(data) {
 
@@ -48,6 +52,7 @@ no_third_party <- function(data) {
 }
 
 
+#'
 #' @export
 no_research <- function(data, honours = T) {
 
@@ -71,9 +76,24 @@ no_research <- function(data, honours = T) {
 
 
 
+#'
 #' @export
 only_bachelor <- function(data, honours = T) {
 
-}
+  if ("govt_course_type" %in% colnames(data) == F) {
+    warning("Your data is missing the variable 'govt_course_type'.\n
+            Bachelor courses will not be isolated in your data.")
+
+    data
+  }
+  if (honours == F) {
+    data %>%
+      dplyr::filter(stringr::str_detect(govt_course_type,"Bachelor's Pass|Bachelor's Graduate"))
+  }
+  else {
+    data %>%
+      dplyr::filter(stringr::str_detect(govt_course_type,"Bachelor"))
+  }
+  }
 
 
