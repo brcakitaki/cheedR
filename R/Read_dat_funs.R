@@ -136,9 +136,7 @@ postcode_read <- function(path, pattern = ".csv") {
       dplyr::rename(postcode = australian_postcode_e320,
                     postcode_year = postcode_year_e320) %>%
       dplyr::mutate_all(as.numeric) %>%
-      dplyr::mutate(first_postcode = dplyr::if_else(!is.na(commencing_postcode), commencing_postcode, postcode)) %>%
       dplyr::distinct(student_id,
-               first_postcode,
                postcode,
                postcode_year) %>%
       dplyr::filter(!is.na(postcode))
