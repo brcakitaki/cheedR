@@ -157,17 +157,22 @@ combine_basic <- function(enrolment_df, postcode_df = NULL, parent_df = NULL) {
     enrolment_df
   }
   if (is.null(postcode_df)) {
+
+    warning("Only parent df will be joined to enrolment df.")
+
     enrolment_df %>%
       left_join(parent_df)
 
-    warning("Only parent df will be joined to enrolment df.")
   }
   if (is.null(parent_df)) {
-    enrolment_df %>%
-      left_join(postcode_df)
 
     warning("Only postcode df will be joined to enrolment df.")
+
+    enrolment_df %>%
+      left_join(postcode_df, by = c("student_id","enrolment_year" = "postcode_year"))
+
   }
+
   else {
     enrolment_df %>%
       left_join(parent_df) %>%
